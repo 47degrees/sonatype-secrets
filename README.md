@@ -1,4 +1,4 @@
-# Github Action powered service to spread Sonatype secrets across repositories
+# Github Action powered service to spread secrets across repositories
 
 Repository for setting up GitHub Actions Secrets Management using [webfactory/secret-spreader](https://github.com/webfactory/secret-spreader).
 
@@ -6,6 +6,7 @@ Repository for setting up GitHub Actions Secrets Management using [webfactory/se
 
 - [How does this work?](#how-does-this-work)
 - [What secrets are available?](#what-secrets-are-available)
+- [Configuration Matrix](#configuration-matrix)
 - [How to add a new secret?](#how-to-add-a-new-secret)
 - [How to add a new repository?](#how-to-add-a-new-repository)
 - [Removing a secret](#removing-a-secret)
@@ -19,9 +20,16 @@ Whenever a new repository is added to the list, a Github Action is triggered tha
 
 ## What secrets are available?
 
-Right now, the only available secrets are those needed for a Scala release through [`sbt-ci-release`](https://github.com/olafurpg/sbt-ci-release#travis):
+Right now, the only available secrets are those needed for a Scala release through [`sbt-ci-release`](https://github.com/olafurpg/sbt-ci-release#travis), and those to create automated PRs (update docs files, changelog, etc.):
 
 ![](secrets.png)
+
+## Configuration Matrix
+
+Additionally, apart from the secrets, we are propagating some boolean settings to be able to centralize the Github actions that are optionally going to run in every repository. Depending on where they are used, if they are present in the repository, the action will run. These are:
+
+- `REQUIRES_JEKYLL_CI`: some projects, like sbt-microsites requires jekyll installed to be able to run the tests.
+- `REQUIRES_PUBLISH_MICROSITE`: if specified, in every release, the microsite will be published.
 
 ## How to add a new secret?
 

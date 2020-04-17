@@ -29,6 +29,7 @@ Right now, the only available secrets are those needed for a Scala release throu
 Additionally, apart from the secrets, we are propagating some boolean settings to be able to centralize the Github actions that are optionally going to run in every repository. Depending on where they are used, if they are present in the repository, the action will run. These are:
 
 - `REQUIRES_JEKYLL_CI`: some projects, like sbt-microsites requires jekyll installed to be able to run the tests.
+- `REQUIRES_CODECOV`: if specified, in every CI check, the codecov reports will be uploaded to [codecov.io](https://codecov.io).
 - `REQUIRES_PUBLISH_MICROSITE`: if specified, in every release, the microsite will be published.
 
 ## How to add a new secret?
